@@ -1,0 +1,21 @@
+
+to produce-4 [ pset ]
+  ask pset [
+    let o product-price
+
+set z e ^ (( - (k * ln a) - c * ln c + c * ln k - c * ln o + c * ln S - k * ln o * cdx 1 - k * ln cdx 1 * cdx 1 + k * ln price 1 * cdx 1 - k * ln o * cdx 2 - k * ln cdx 2 * cdx 2 + k * ln price 2 * cdx 2 - k * ln o * cdx 3 - k * ln cdx 3 * cdx 3 + k * ln price 3 * cdx 3 - k * ln o * cdx 4 - k * ln cdx 4 * cdx 4 + k * ln price 4 * cdx 4) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+set x1 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 1 - k * ln cdx 1 - c * ln price 1 + k * ln price 1 + k * ln cdx 1 * cdx 2 - k * ln cdx 2 * cdx 2 - k * ln price 1 * cdx 2 + k * ln price 2 * cdx 2 + k * ln cdx 1 * cdx 3 - k * ln cdx 3 * cdx 3 - k * ln price 1 * cdx 3 + k * ln price 3 * cdx 3 + k * ln cdx 1 * cdx 4 - k * ln cdx 4 * cdx 4 - k * ln price 1 * cdx 4 + k * ln price 4 * cdx 4) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+set x2 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 2 - k * ln cdx 2 - c * ln price 2 + k * ln price 2 - k * ln cdx 1 * cdx 1 + k * ln cdx 2 * cdx 1 + k * ln price 1 * cdx 1 - k * ln price 2 * cdx 1 + k * ln cdx 2 * cdx 3 - k * ln cdx 3 * cdx 3 - k * ln price 2 * cdx 3 + k * ln price 3 * cdx 3 + k * ln cdx 2 * cdx 4 - k * ln cdx 4 * cdx 4 - k * ln price 2 * cdx 4 + k * ln price 4 * cdx 4) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+set x3 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 3 - k * ln cdx 3 - c * ln price 3 + k * ln price 3 - k * ln cdx 1 * cdx 1 + k * ln cdx 3 * cdx 1 + k * ln price 1 * cdx 1 - k * ln price 3 * cdx 1 - k * ln cdx 2 * cdx 2 + k * ln cdx 3 * cdx 2 + k * ln price 2 * cdx 2 - k * ln price 3 * cdx 2 + k * ln cdx 3 * cdx 4 - k * ln cdx 4 * cdx 4 - k * ln price 3 * cdx 4 + k * ln price 4 * cdx 4) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+set x4 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 4 - k * ln cdx 4 - c * ln price 4 + k * ln price 4 - k * ln cdx 1 * cdx 1 + k * ln cdx 4 * cdx 1 + k * ln price 1 * cdx 1 - k * ln price 4 * cdx 1 - k * ln cdx 2 * cdx 2 + k * ln cdx 4 * cdx 2 + k * ln price 2 * cdx 2 - k * ln price 4 * cdx 2 - k * ln cdx 3 * cdx 3 + k * ln cdx 4 * cdx 3 + k * ln price 3 * cdx 3 - k * ln price 4 * cdx 3) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+set ef e ^ (( - ln a - ln c + ln k - ln o + ln S + ln c * cdx 1 - ln k * cdx 1 - ln S * cdx 1 - ln cdx 1 * cdx 1 + ln price 1 * cdx 1 + ln c * cdx 2 - ln k * cdx 2 - ln S * cdx 2 - ln cdx 2 * cdx 2 + ln price 2 * cdx 2 + ln c * cdx 3 - ln k * cdx 3 - ln S * cdx 3 - ln cdx 3 * cdx 3 + ln price 3 * cdx 3 + ln c * cdx 4 - ln k * cdx 4 - ln S * cdx 4 - ln cdx 4 * cdx 4 + ln price 4 * cdx 4) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3 + k * cdx 4))
+
+    assign-new-proposal    
+  ]
+end
+

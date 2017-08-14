@@ -1,0 +1,78 @@
+to-report price-change [I]
+  report abs item I (map / map mean surplus-list (map [ (?1 + ?2) / 2 ] map mean supply-list map mean demand-list))
+end
+
+to-report deltas [J]
+  report max (list 0.001 min (list price-delta (abs item J pdlist * price-delta)))
+end
+
+to-report other-price-change [J]
+  report item J (map [?1 / ?2] (reduce sentence surplus-list) (map [ (?1 + ?2) / 2 ] reduce sentence supply-list reduce sentence demand-list))
+end
+
+to planning-bureau
+  let J 0
+  set final-surpluses (list)
+  foreach final-goods [
+    let I ?
+    let supply sum [output] of final-producers I
+    let demand sum [ final-demand I ] of ccs
+    let surplus (supply - demand)
+    set final-surpluses lput surplus final-surpluses
+    let delta deltas J
+    let new-price final-price I
+    if surplus > 0 [ set new-price final-price I * (1 - delta) ]
+    if surplus < 0 [ set new-price final-price I * (1 + delta) ]
+    set final-prices replace-item (I - 1) final-prices new-price
+    set J J + 1
+  ]
+  
+  set input-surpluses (list)
+  foreach intermediate-inputs [
+    let I ?
+    let supply sum [output] of input-producers I
+    let demand sum [ input-quantity (1 + position I item 0 production-inputs) ] of wcs with [member? I item 0 production-inputs]
+    let surplus (supply - demand)
+    set input-surpluses lput surplus input-surpluses
+    let delta deltas J
+    while [delta > 1] [set delta delta / 2]
+    let new-price input-price I
+    if surplus > 0 [ set new-price input-price I * (1 - delta) ]
+    if surplus < 0 [ set new-price input-price I * (1 + delta) ]
+    set input-prices replace-item (I - 1) input-prices new-price
+    set J J + 1
+  ]
+  
+  set nature-surpluses (list)
+  foreach nature-types [
+    let I ?
+    let supply natural-resources-supply                 ;;only one type of natural nature at present
+    let demand sum [ nature-quantity (1 + position I item 1 production-inputs) ] of wcs with [member? I item 1 production-inputs]
+    let surplus (supply - demand)
+    set nature-surpluses lput surplus nature-surpluses
+    let delta deltas J
+    while [delta > 1] [set delta delta / 2]
+    let new-price nature-price I
+    if surplus > 0 [ set new-price nature-price I * (1 - delta) ]
+    if surplus < 0 [ set new-price nature-price I * (1 + delta) ]
+    set nature-prices replace-item (I - 1) nature-prices new-price
+    set J J + 1
+  ]
+  
+  set labor-surpluses (list)
+  foreach labor-types [
+    let I ?
+    let supply labor-supply                            ;;only one type of labor at present
+    let demand sum [ labor-quantity (1 + position I item 2 production-inputs) ] of wcs with [member? I item 2 production-inputs]
+    let surplus (supply - demand)
+    set labor-surpluses lput surplus labor-surpluses
+    let delta deltas J
+    while [delta > 1] [set delta delta / 2]
+    let new-price labor-price I
+    if surplus > 0 [ set new-price labor-price I * (1 - delta) ]
+    if surplus < 0 [ set new-price labor-price I * (1 + delta) ]
+    set labor-prices replace-item (I - 1) labor-prices new-price
+    set J J + 1
+  ]
+  
+end

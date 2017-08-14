@@ -1,0 +1,69 @@
+to assign-new-proposal
+  let ic 1
+  set output z
+  set input-quantities (list)
+  if length item 0 production-inputs > 0 [
+    foreach item 0 production-inputs [
+      set input-quantities lput stringx ic input-quantities
+      set ic ic + 1 ]
+  ]
+  set nature-quantities (list)
+  foreach item 1 production-inputs [
+    set nature-quantities lput stringx ic nature-quantities
+    set ic ic + 1 ]
+  set labor-quantities (list)
+  foreach item 2 production-inputs [
+    set labor-quantities lput stringx ic labor-quantities
+    set ic ic + 1 ]
+  set effort ef  
+end
+
+to-report xlist
+  report (list x1 x2 x3 x4 x5 x6 x7 x8 x9 x10 x11 x12)
+end
+
+to-report stringx [i]
+   report item (i - 1) xlist
+end
+
+to-report my-input-prices
+  let mip (list)
+  foreach item 0 production-inputs [ set mip lput input-price ? mip ]
+  foreach item 1 production-inputs [ set mip lput nature-price ? mip ]
+  foreach item 2 production-inputs [ set mip lput labor-price ? mip ]
+  report mip 
+end
+
+to-report my-input-exponents
+  let mip (list)
+  foreach item 0 production-inputs [ set mip lput input-exponent ? mip ]
+  foreach item 1 production-inputs [ set mip lput nature-exponent ? mip ]
+  foreach item 2 production-inputs [ set mip lput labor-exponent ? mip ]
+  report mip 
+end
+
+to-report all-input-prices
+  report (sentence input-prices nature-prices labor-prices)
+end
+
+to-report all-input-exponents
+  report (sentence input-exponents nature-exponents labor-exponents)
+end
+
+;;input prices (p1 p2 p3...pn)
+
+to-report price [x]
+  report item (x - 1) my-input-prices
+end
+
+;;input cobb-douglas exponents (b1 b2 b3...bn)
+
+to-report cdx [x]
+  report item (x - 1) all-input-exponents
+end
+
+;;input quantities (x1 x2 x3...xn)
+
+to-report quantity [x]
+  report stringx x
+end

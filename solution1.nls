@@ -1,0 +1,15 @@
+
+to produce-1 [ pset ]
+  ask pset [
+    let o product-price
+
+set z e ^ (( - (k * ln a) - c * ln c + c * ln k - c * ln o + c * ln S - k * ln o * cdx 1 - k * ln cdx 1 * cdx 1 + k * ln price 1 * cdx 1) / (c - k + k * cdx 1))
+
+set x1 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 1 - k * ln cdx 1 - c * ln price 1 + k * ln price 1) / (c - k + k * cdx 1))
+
+set ef e ^ (( - ln a - ln c + ln k - ln o + ln S + ln c * cdx 1 - ln k * cdx 1 - ln S * cdx 1 - ln cdx 1 * cdx 1 + ln price 1 * cdx 1) / (c - k + k * cdx 1))
+
+    assign-new-proposal    
+  ]
+end
+
