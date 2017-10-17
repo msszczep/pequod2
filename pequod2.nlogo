@@ -24,8 +24,8 @@
 ;
 ; CONSUMER COUNCILS
 ;
-; effort             - allows for differential consumption comensurate with
-;                      effort; not yet impleted...not currently tied
+; effort             - allows for differential consumption commensurate with
+;                      effort; not yet implemented...not currently tied
 ;                      to the effort of the consumers vis-a-vis their
 ;                      worker council
 ; df[N]              - proposed consumption quantities (demands) of the given good
@@ -34,7 +34,7 @@
 ; cy                 - scalar for entire product in utility function; interpreted as
 ;                      the total factor of utility
 ; yf[N]              - exponents in utility function representing the utility
-;                      elastisticty of consumption of the given good
+;                      elasticity of consumption of the given good
 ; final-demands      - list of df[N]
 ; utility-multiplier - INTERFACE PARAMETER allowing additional zeros
 ;                      to be added to consumer utility; currently unused
@@ -45,18 +45,12 @@
 ;                  not industry in the sense of manufacturing, etc
 ; product        - numerical index; more like an industry; see product-price
 ;                  reporter for interpretation
-; qf[N]          - (obsolete)
 ; qi[N]          - (deprecated) see [P]-quantities
-; qn             - (deprecated) see [P]-quantities
 ; ql             - (deprecated) see [P]-quantities
 ; effort         - scales labor to output; allows consumers who are workers to
-;                  receive consumption comensurate with effort; not currently tied to
+;                  receive consumption commensurate with effort; not currently tied to
 ;                  the effort of the consumers vis-a-vis their worker council
 ; output         - quantity of the firm's final good
-; xf[N]          - (obsolete)
-; xi[N]          - (deprecated) see [P]-exponents
-; xn             - (deprecated) see [P]-exponents
-; xl             - (deprecated) see [P]-exponents
 ; xe             - exponent for effort in the production function
 ; cq             - scalar for entire product in production function; sometimes
 ;                  interpreted as technology scalar or the total factor of
@@ -75,16 +69,6 @@
 ;
 ; GLOBALS
 ;
-; prices              - (deprecated)
-; totals              - (deprecated)
-; price-f[N]          - (deprecated) see [P]-prices
-; price-i[N]          - (deprecated) see [P]-prices
-; price-n             - (deprecated) see [P]-prices
-; price-l             - (deprecated) see [P]-prices
-; surplus-f[N]        - (deprecated) see [P]-surpluses
-; surplus-i[N]        - (deprecated) see [P]-surpluses
-; surplus-n           - (deprecated) see [P]-surpluses
-; surplus-l           - (deprecated) see [P]-surpluses
 ; lorenz-points       - along with GINI, used to measure income inequality
 ; gini-index-reserve  - along with Lorenz values, used to measure income inequality
 ; final-goods         - list of the economy's final goods (currently a
@@ -101,7 +85,7 @@
 ;                       nature, labor}
 ; threshold-met?      - signals end of iterations once equilibrium is
 ;                       obtained
-; experiment-number   - seed for random number generator; facilitates experimental reproducability
+; experiment-number   - seed for random number generator; facilitates experimental reproduce-ability
 ; surplus-threshold   - interface value; the difference between values at which the model stops
 ;
 ;
@@ -113,13 +97,11 @@
 ; randomize-prices       - uses experiment-number to seed random prices
 ; randomize-councils     - randomly changes experiment-number
 ; setup                  - standard procedure to set up agents and world, along with default variable values
-; factory-sort [x]       - (obsolete)
 ; propose-c              - set proposed consumption quantities (demands)
 ; propose-f              - (deprecated) alias for produce-final-goods
 ; produce-final-goods    - updates the values for the final goods
 ; propose-i              - (deprecated) alias for produce-input-goods
 ; produce-input-goods    - updates the values for the input goods
-; propose-p              - (obsolete)
 ; go                     - iterates (updates ticks) until the surplus threshold is met
 ; check-surpluses        - compares differences between each nature and good to the surplus-threshold value
 ; iterate-plan           - the heart of the model; invokes the planning/proposal procedures and updates the interface
@@ -130,9 +112,6 @@
 ; plot-if-small [x]      - used in Quantity History graph
 ; update-lorenz-and-gini - @... ; borrowed from Uri Wilensky's SugarScape 3 Model in the Social Sciences library
 ; normalize-prices       - (obsolete)
-; planning-bureau-3      - a core procedure; updates resource quantities and prices; located in the price-adjustment.nls include
-; planning-bureau-2      - (obsolete)
-; planning-bureau        - (obsolete)
 ;
 ;
 ;
@@ -224,40 +203,75 @@ __includes [ "proposal-assignment.nls"
 breed [ccs cc]
 breed [wcs wc]
 
-ccs-own [ effort df1 df2 income
-              cy yf1 yf2
-              num-workers
-              final-demands
-              utility-exponents ]
+ccs-own [ effort
+          income
+          cy
+          num-workers
+          final-demands
+          utility-exponents ]
 
 wcs-own [ industry
-
           production-inputs
-
-          product qf1 qf2 qi1 qi2 qn  ql  effort
-          output  xf1 xf2 xi1 xi2 xn  xl  xe
-          z       x1  x2  x3  x4  x5  x6  c   ef
-                  x7  x8  x9  x10 x11 x12
-          base-color cq ce du
-
+          product
+          effort
+          ql
+          output
+          xe
+          z
+          x1
+          x2
+          x3
+          x4
+          x5
+          x6
+          x7
+          x8
+          x9
+          x10
+          x11
+          x12
+          c
+          ef
+          base-color
+          cq
+          ce
+          du
           input-quantities
           nature-quantities
           labor-quantities
-
           input-exponents
           nature-exponents
           labor-exponents
-
           k
           S
           A ]
 
-globals [ final-goods intermediate-inputs nature-types labor-types
-          final-prices input-prices nature-prices labor-prices
-          old-final-prices old-input-prices old-nature-prices old-labor-prices
-          final-surpluses input-surpluses nature-surpluses labor-surpluses
-          threshold-met? pdlist price-deltas delta-delay
-          lorenz-points gini-index-reserve
+globals [ final-goods
+          intermediate-inputs
+          nature-types
+          labor-types
+
+          final-prices
+          input-prices
+          nature-prices
+          labor-prices
+
+          old-final-prices
+          old-input-prices
+          old-nature-prices
+          old-labor-prices
+
+          final-surpluses
+          input-surpluses
+          nature-surpluses
+          labor-surpluses
+
+          threshold-met?
+          pdlist
+          price-deltas
+          delta-delay
+          lorenz-points
+          gini-index-reserve
         ]
 
 to initialize-prices
@@ -331,7 +345,6 @@ to setup
     set ll ll + 1
     set labor-types lput ll labor-types
   ]
-
 
   set final-surpluses (list)
   set input-surpluses (list)
@@ -419,16 +432,6 @@ to move-house
   set ycor min list max-pycor cy
 end
 
-; obsolete, evidently
-to factory-sort [x]
-  ask wcs [
-    set xcor min-pxcor + 5
-    set heading 90
-    fd position self sort-on [x] wcs
-  ]
-end
-
-; RESUME HERE
 to-report x-sum
   report sum (list sum input-exponents sum nature-exponents sum labor-exponents)
 end

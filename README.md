@@ -123,3 +123,5 @@ This model is based upon the work of Robin Hahnel and Michael Albert on particip
 The model can be shared and modified under the terms of the GPL version 3. The code can be downloaded from and changes submitted to its [Github repository](https://github.com/ParticipatoryEconomics/pequod).
 
 [ParticipatoryEconomics.info](http://participatoryeconomics.info) provides free e-books and other informational materials on participatory economics.
+
+(Current model uses Netlogo 5.3.1)

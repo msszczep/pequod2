@@ -63,12 +63,12 @@ wcs-own [ industry ; numerical index (1 is final and 2 is intermediate); is
           xl ; deprecated, unused, see [P]-exponents
           xe ; exponent for effort in the production function
           z ; unexplained, apparently unused
-          x1 ; unexplained, apparently unused
-          x2 ; unexplained, apparently unused
-          x3 ; unexplained, apparently unused
-          x4 ; unexplained, apparently unused
-          x5 ; unexplained, apparently unused
-          x6 ; unexplained, apparently unused
+          x1 ; unexplained
+          x2 ; unexplained
+          x3 ; unexplained
+          x4 ; unexplained
+          x5 ; unexplained
+          x6 ; unexplained
           c
           ef ; unexplained, apparently unused
           x7 ; unexplained, apparently unused

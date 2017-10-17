@@ -28,9 +28,7 @@ to produce-final-goods
       set N N + ( effort-exponent * ( ln k + ln S - ln effort-exponent - ln input-price I + ln input-exponent I ) )
       set input-quantities lput exp (N / D) input-quantities
     ]
-    
-    set qi1 input-quantity 1
-    set qi2 input-quantity 2
+
 
     ;;;;;;;;;;;;;;;;set nature demands;;;;;;;;;;;;;;;;
     set nature-quantities (list)
@@ -53,9 +51,7 @@ to produce-final-goods
       set N N + ( effort-exponent * ( ln k + ln S - ln effort-exponent - ln nature-price I + ln nature-exponent I ) )
       set nature-quantities lput exp (N / D) nature-quantities
     ]
-    
-    set qn nature-quantity 1
-    
+
     ;;;;;;;;;;;;;;;;set labor demands;;;;;;;;;;;;;;;;
     set labor-quantities (list)
     foreach labor-types [
@@ -174,8 +170,6 @@ to produce-input-goods
       set nature-quantities lput exp (N / D) nature-quantities
     ]
     
-    set qn nature-quantity 1
-
 
     ;;;;;;;;;;;;;;;;set labor demands;;;;;;;;;;;;;;;;
     set labor-quantities (list)
