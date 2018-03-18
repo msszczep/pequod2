@@ -109,7 +109,6 @@
 ;
 ; @REPORTERS
 ;
-; x-sum                 - (obsolete)
 ; consumer-utility      - reports consumer utility
 ; GDP                   - the global sum of production
 ; final-demand [x]      - reports the given item from the final-demands tuple
@@ -407,10 +406,6 @@ end
 to move-house
   set xcor min-pxcor + (unit-width * who)
   set ycor min list max-pycor cy
-end
-
-to-report x-sum
-  report sum (list sum input-exponents sum nature-exponents sum labor-exponents)
 end
 
 to-report consumer-utility
