@@ -28,14 +28,11 @@
 ;                      effort; not yet implemented...not currently tied
 ;                      to the effort of the consumers vis-a-vis their
 ;                      worker council
-; df[N]              - proposed consumption quantities (demands) of the given good
 ; income             - scales effort and acts as a budget constraint in optimizing
 ;                      the utility function
 ; cy                 - scalar for entire product in utility function; interpreted as
 ;                      the total factor of utility
-; yf[N]              - exponents in utility function representing the utility
-;                      elasticity of consumption of the given good
-; final-demands      - list of df[N]
+; final-demands      - list of final demands
 ; utility-multiplier - INTERFACE PARAMETER allowing additional zeros
 ;                      to be added to consumer utility; currently unused
 ;
@@ -45,7 +42,6 @@
 ;                  not industry in the sense of manufacturing, etc
 ; product        - numerical index; more like an industry; see product-price
 ;                  reporter for interpretation
-; qi[N]          - (deprecated) see [P]-quantities
 ; ql             - (deprecated) see [P]-quantities
 ; effort         - scales labor to output; allows consumers who are workers to
 ;                  receive consumption commensurate with effort; not currently tied to
@@ -97,10 +93,7 @@
 ; randomize-prices       - uses experiment-number to seed random prices
 ; randomize-councils     - randomly changes experiment-number
 ; setup                  - standard procedure to set up agents and world, along with default variable values
-; propose-c              - set proposed consumption quantities (demands)
-; propose-f              - (deprecated) alias for produce-final-goods
 ; produce-final-goods    - updates the values for the final goods
-; propose-i              - (deprecated) alias for produce-input-goods
 ; produce-input-goods    - updates the values for the input goods
 ; go                     - iterates (updates ticks) until the surplus threshold is met
 ; check-surpluses        - compares differences between each nature and good to the surplus-threshold value
@@ -111,7 +104,6 @@
 ; color-wcs              - pretties agents
 ; plot-if-small [x]      - used in Quantity History graph
 ; update-lorenz-and-gini - @... ; borrowed from Uri Wilensky's SugarScape 3 Model in the Social Sciences library
-; normalize-prices       - (obsolete)
 ;
 ;
 ;
@@ -123,28 +115,16 @@
 ; final-demand [x]      - reports the given item from the final-demands tuple
 ; final-producers [x]   - reports the given item from the final-producers tuple
 ; input-producers [x]   - reports the given item from the input-producers tuple
-; pf1s                  - reports the WCs for final good 1
-; pf2s                  - reports the WCs for final good 2
 ; pfs                   - reports all final good WCs
-; pi1s                  - reports the WCs for intermediate good 1
-; pi2s                  - reports the WCs for intermediate good 2
 ; pis                   - reports all intermediate good WCs
 ; invoice               - one of four details for WC debugging @...
 ; productivity          - one of four details for WC debugging @...
 ; check-bounds [x]      - sets upper and lower bounds on the input
 ; labor-supply          - reports the sum of all workers in CCs
-; pf1                   - reports the current prices of final good 1
-; pf2                   - reports the current prices of final good 2
-; pi1                   - reports the current prices of intermediate good 1
-; pi2                   - reports the current prices of intermediate good 2
-; pn                    - reports the current prices for the nature input
 ; pl                    - reports the current prices for the labor input
 ; gini                  - report the GINI
 ; gini-people           - used in GINI analysis
 ; gini-wealth           - used in GINI analysis
-; input [x]             - (unused)
-; nature [x]          - (unused)
-; labor [x]             - (unused)
 ; final-surplus [x]     - reports the given item from the final-surplus tuple
 ; input-surplus [x]     - reports the given item from the input-surplus tuple
 ; nature-surplus [x]  - reports the given item from the nature-surplus tuple
@@ -168,9 +148,6 @@
 ; percent-surplus-list  - reports the surplus:supply ratio as a percentage
 ; total-surplus         - reports the total surplus as the sum of all the surpluses
 ; space-list [listx]    - reduces the given listx tuple; used in interface reporters
-; produce               - (obsolete)
-; deltas                - (obsolete)
-; normal-price-vector   - (obsolete)
 ;
 ;
 ;
@@ -628,18 +605,6 @@ to update-lorenz-and-gini
         (wealth-sum-so-far / total-wealth)
     ]
   ]
-end
-
-to-report input [x]
-  report item x input-quantities
-end
-
-to-report nature [x]
-  report item x nature-quantities
-end
-
-to-report labor [x]
-  report item x labor-quantities
 end
 
 to-report final-surplus [x]
