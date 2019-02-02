@@ -160,7 +160,6 @@
 
 __includes [ "proposal-assignment.nls"
              "price-adjustment.nls"
-             "production-proposals.nls"
 
              "solution1.nls"
              "solution2.nls"
@@ -220,7 +219,18 @@ wcs-own [ industry
           labor-exponents
           k
           S
-          A ]
+          A 
+          debug-a
+          debug-k
+          debug-c
+          debug-o
+          debug-s
+          debug-cdx-1
+          debug-cdx-2
+          debug-cdx-3
+          debug-price-1
+          debug-price-2
+          debug-price-3]
 
 globals [ final-goods
           intermediate-inputs

@@ -3,6 +3,18 @@ to produce-3 [ pset ]
   ask pset [
     let o product-price
 
+    set debug-a a
+    set debug-k k
+    set debug-c c
+    set debug-o o
+    set debug-s S
+    set debug-cdx-1 cdx 1
+    set debug-cdx-2 cdx 2
+    set debug-cdx-3 cdx 3
+    set debug-price-1 price 1
+    set debug-price-2 price 2
+    set debug-price-3 price 3
+
 set z e ^ (( - (k * ln a) - c * ln c + c * ln k - c * ln o + c * ln S - k * ln o * cdx 1 - k * ln cdx 1 * cdx 1 + k * ln price 1 * cdx 1 - k * ln o * cdx 2 - k * ln cdx 2 * cdx 2 + k * ln price 2 * cdx 2 - k * ln o * cdx 3 - k * ln cdx 3 * cdx 3 + k * ln price 3 * cdx 3) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3))
 
 set x1 e ^ (( - (k * ln a) - c * ln c + c * ln k - k * ln o + c * ln S + c * ln cdx 1 - k * ln cdx 1 - c * ln price 1 + k * ln price 1 + k * ln cdx 1 * cdx 2 - k * ln cdx 2 * cdx 2 - k * ln price 1 * cdx 2 + k * ln price 2 * cdx 2 + k * ln cdx 1 * cdx 3 - k * ln cdx 3 * cdx 3 - k * ln price 1 * cdx 3 + k * ln price 3 * cdx 3) / (c - k + k * cdx 1 + k * cdx 2 + k * cdx 3))
