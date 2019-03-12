@@ -700,22 +700,6 @@ to-report supply-list
                map [ labor-supply ] labor-types )
 end
 
-to-report final-demand-list
-  report map [ sum [final-demand ?] of ccs ] final-goods
-end
-
-to-report input-demand-list
-  report map [ sum [input-quantity (1 + position ? item 0 production-inputs)] of wcs with [member? ? item 0 production-inputs] ] intermediate-inputs
-end
-
-to-report nature-demand-list
-  report map [ sum [nature-quantity (1 + position ? item 1 production-inputs)] of wcs with [member? ? item 1 production-inputs] ] nature-types
-end
-
-to-report labor-demand-list
-  report map [ sum [labor-quantity (1 + position ? item 2 production-inputs)] of wcs with [member? ? item 2 production-inputs] ] labor-types
-end
-
 to-report demand-list
   report (list map [ sum [final-demand ?] of ccs ] final-goods
                map [ sum [input-quantity (1 + position ? item 0 production-inputs)] of wcs with [member? ? item 0 production-inputs] ] intermediate-inputs
